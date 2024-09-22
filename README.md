@@ -21,7 +21,7 @@ installation is available as a nixos host and vm.
 1. clone this repository:
 
    ```bash
-   git clone https://github.com/richard604/hyprdots-nix.git
+   git clone https://github.com/RyuuseiAkira/hyprdots-nix.git
    cd hyprdots-nix
    ```
 

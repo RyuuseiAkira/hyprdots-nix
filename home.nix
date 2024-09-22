@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  inputs,
   pkgs,
   username,
   gitUser,
@@ -30,14 +31,14 @@
 
   # enabling this will create files in .config/hypr
   # we will be replacing this with the hyprdots-build
-  wayland.windowManager.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    extraConfig = ''
-      exec-once = kitty $HOME/hyprdots-first-boot.sh
-      exec-once = touch $HOME/.zshrc
-    '';
-  };
+  #wayland.windowManager.hyprland = {
+  #  enable = true;
+  #  xwayland.enable = true;
+  #  extraConfig = ''
+  #    exec-once = kitty $HOME/hyprdots-first-boot.sh
+  #    exec-once = touch $HOME/.zshrc
+  #  '';
+  #};
 
   # ===== Home Packages =====
   home.packages = with pkgs; [

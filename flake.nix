@@ -8,6 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    spicetify-nix.url = "github:the-argus/spicetify-nix";
   };
 
   outputs =
@@ -15,19 +16,20 @@
       self,
       nixpkgs,
       home-manager,
+      inputs,
       ...
     }:
     let
       system = "x86_64-linux";
 
-      username = "editme";
-      gitUser = "editme";
-      gitEmail = "editme";
-      host = "editme";
+      username = "akira";
+      gitUser = "RyuuseiAkira";
+      gitEmail = "haokhanh713@gmail.com";
+      host = "nixos";
 
       # you need to change this with passwd when you boot
       # root will have the same password
-      defaultPassword = "editme";
+      defaultPassword = "khanhhao1310";
 
       pkgs = import nixpkgs {
         inherit system;
@@ -144,8 +146,10 @@
       homeConfigurations = {
         ${username} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
+          extraSpecialArgs = {inherit inputs;};
           modules = [
             ./home.nix
+            ./modules/spicetify.nix
           ];
           extraSpecialArgs = {
             inherit username gitUser gitEmail;

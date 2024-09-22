@@ -21,6 +21,12 @@
         device = "nodev";
         efiSupport = true;
         useOSProber = true;
+        theme = pkgs.fetchFromGitHub {
+           owner = "shvchk";
+           repo = "fallout-grub-theme";
+           rev = "80734103d0b48d724f0928e8082b6755bd3b2078";
+           sha256 = "sha256-7kvLfD6Nz4cEMrmCA9yq4enyqVyqiTkVZV5y4RyUatU=";
+        };
       };
     };
     kernelPackages = pkgs.linuxPackages_zen;
@@ -34,7 +40,7 @@
     };
     bluetooth = {
       enable = true;
-      powerOnBoot = true;
+      powerOnBoot = false;
     };
   };
 
@@ -127,9 +133,37 @@
       546
     ];
   };
+  # XDG Desktop Portal stuff
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    config.common.default = "*";
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+    ];
+  };
+  # OpenRazer
+  hardware.openrazer.enable = true;
+  hardware.openrazer.users = ["akira"];
+
+  i18n.inputMethod = {
+    type = "fcitx5";
+    enable = true;
+    fcitx5.waylandFrontend = true;
+    fcitx5.addons = with pkgs; [
+      rime-data
+      fcitx5-rime
+      fcitx5-gtk
+      #kdePackages.fcitx5-qt
+      fcitx5-unikey
+      fcitx5-bamboo
+      fcitx5-chinese-addons  # table input method support
+      fcitx5-nord            # a color theme
+     ];
+   };
 
   # ===== System Configuration =====
-  time.timeZone = "America/Vancouver";
+  time.timeZone = "Asia/Ho_Chi_Minh"; #https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   i18n.defaultLocale = "en_CA.UTF-8";
 
   # ===== User Configuration =====
@@ -298,6 +332,33 @@
     wl-clipboard
     grim
     grimblast
+    
+    # Custom
+    google-chrome
+    vesktop
+    spotify
+    vscodium
+    spicetify-cli
+    mission-center
+    wev
+    xorg.xev
+    linuxHeaders
+    linuxKernel.packages.linux_zen.system76
+    mcontrolcenter
+    hypridle
+    hyprlock
+    obs-studio
+    xdg-desktop-portal
+    razergenie
+    mpv
+    pulseaudio
+    alsa-utils
+    playerctl
+    libsForQt5.fcitx5-with-addons
+    fcitx5
+    fcitx5-bamboo
+    fcitx5-unikey
+    neofetch
   ];
 
   # ===== Program Configurations =====
